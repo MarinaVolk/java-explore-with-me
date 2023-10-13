@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
  * Date: 2023-10-12,   10:33 PM (UTC+3)
  * Description:
  */
+
 @Entity
 @Table(name = "stat")
 @Getter
