@@ -4,7 +4,7 @@ services:
     build: ./stats/stats-server
     container_name: stats_container
     ports:
-      - "8989:8989"
+      - "9090:9090"
     depends_on:
       - stats-db
     environment:
@@ -30,3 +30,10 @@ services:
 
   ewm-db:
     image: postgres:14-alpine
+    container_name: ewm-db
+    ports:
+      - "6542:5432"
+    environment:
+      - POSTGRES_DB=ewm-db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
