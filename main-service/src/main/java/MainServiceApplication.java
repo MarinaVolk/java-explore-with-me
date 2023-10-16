@@ -1,6 +1,3 @@
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 /**
  * File Name: MainServiceApplication.java
  * Author: Marina Volkova
