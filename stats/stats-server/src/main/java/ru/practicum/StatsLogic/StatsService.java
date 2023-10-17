@@ -1,11 +1,14 @@
-package ru.practicum;
+package ru.practicum.StatsLogic;
+
+import ru.practicum.HitDto;
+import ru.practicum.ViewStatsDto;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
 /**
- * File Name: ru.practicum.StatsService.java
+ * File Name: ru.practicum.StatsLogic.StatsService.java
  * Author: Marina Volkova
  * Date: 2023-10-12,   10:40 PM (UTC+3)
  * Description:

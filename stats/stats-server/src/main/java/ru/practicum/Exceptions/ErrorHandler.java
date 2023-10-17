@@ -1,14 +1,15 @@
-package ru.practicum;
+package ru.practicum.Exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import ru.practicum.Exceptions.ValidationException;
 
 import java.util.Map;
 /**
- * File Name: ru.practicum.ErrorHandler.java
+ * File Name: ru.practicum.Exceptions.ErrorHandler.java
  * Author: Marina Volkova
  * Date: 2023-10-12,   10:43 PM (UTC+3)
  * Description:

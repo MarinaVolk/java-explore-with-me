@@ -1,11 +1,11 @@
-package ru.practicum;
+package ru.practicum.Models;
 
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 /**
- * File Name: ru.practicum.Hit.java
+ * File Name: ru.practicum.Models.Hit.java
  * Author: Marina Volkova
  * Date: 2023-10-12,   10:33 PM (UTC+3)
  * Description:

@@ -1,10 +1,12 @@
-package ru.practicum;
+package ru.practicum.Models;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import ru.practicum.HitDto;
+import ru.practicum.Models.Hit;
 
 /**
- * File Name: ru.practicum.HitMapper.java
+ * File Name: ru.practicum.Models.HitMapper.java
  * Author: Marina Volkova
  * Date: 2023-10-12,   10:36 PM (UTC+3)
  * Description:

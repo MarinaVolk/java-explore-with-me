@@ -20,7 +20,7 @@ import java.util.List;
 
 @Service
 @Slf4j
-@PropertySource(value = {"classpath:statsClientProperties.properties"})
+@PropertySource(value = {"classpath:application.properties"})
 public class StatsClient {
     @Value("${stats.server.url}")
     private String baseUrl;

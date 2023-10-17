@@ -1,14 +1,19 @@
-package ru.practicum;
+package ru.practicum.StatsLogic;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import ru.practicum.Exceptions.ValidationException;
+import ru.practicum.HitDto;
+import ru.practicum.Models.Hit;
+import ru.practicum.Models.HitMapper;
+import ru.practicum.ViewStatsDto;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * File Name: ru.practicum.StatsServiceImpl.java
+ * File Name: ru.practicum.StatsLogic.StatsServiceImpl.java
  * Author: Marina Volkova
  * Date: 2023-10-12,   10:41 PM (UTC+3)
  * Description:

@@ -1,13 +1,15 @@
-package ru.practicum;
+package ru.practicum.StatsLogic;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import ru.practicum.Models.Hit;
+import ru.practicum.ViewStatsDto;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * File Name: ru.practicum.StatsRepository.java
+ * File Name: ru.practicum.StatsLogic.StatsRepository.java
  * Author: Marina Volkova
  * Date: 2023-10-12,   10:38 PM (UTC+3)
  * Description:

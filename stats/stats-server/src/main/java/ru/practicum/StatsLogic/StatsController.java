@@ -1,10 +1,12 @@
-package ru.practicum;
+package ru.practicum.StatsLogic;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import ru.practicum.HitDto;
+import ru.practicum.ViewStatsDto;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
@@ -12,7 +14,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * File Name: ru.practicum.StatsController.java
+ * File Name: ru.practicum.StatsLogic.StatsController.java
  * Author: Marina Volkova
  * Date: 2023-10-12,   10:37 PM (UTC+3)
  * Description:
