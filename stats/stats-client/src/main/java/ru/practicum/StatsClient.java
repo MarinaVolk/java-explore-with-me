@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -22,7 +23,7 @@ import java.util.List;
 @Slf4j
 @PropertySource(value = {"classpath:application.properties"})
 public class StatsClient {
-    @Value("${stats.server.url}")
+    @Value("http://localhost:9090"/*"${stats.server.url}"*/)
     private String baseUrl;
 
     private final WebClient client;
@@ -35,7 +36,7 @@ public class StatsClient {
         log.info("получена статистика за период с {}, по {}, uris {}, unique {}", start, end, uris, isUnique);
         return client.get()
                 .uri(uriBuilder -> uriBuilder
-                        .path("/stats")
+                        .path(baseUrl + "/stats")
                         .queryParam("start", start)
                         .queryParam("end", end)
                         .queryParam("uris", uris)
@@ -51,11 +52,12 @@ public class StatsClient {
         final HitDto hitDto = new HitDto(app, uri, ip, timestamp);
         log.info("Статистика сохранена {}", hitDto);
         this.client.post()
-                .uri("/hit")
+                .uri(baseUrl + "/hit")
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(hitDto, HitDto.class)
+                .body(Mono.just(hitDto), HitDto.class)
                 .retrieve()
                 .toBodilessEntity()
+                //.bodyToMono(HitDto.class)
                 .block();
     }
 
