@@ -32,7 +32,7 @@ public class AdminEventController {
             @RequestParam(value = "from", defaultValue = "0") int from,
             @RequestParam(value = "size", defaultValue = "10") int size) {
 
-        return adminEventService.getByParams(
+        List<EventFullDto> result = adminEventService.getByParams(
                 users,
                 states,
                 categories,
@@ -40,6 +40,7 @@ public class AdminEventController {
                 rangeEnd,
                 from,
                 size);
+        return result;
     }
 
     @PatchMapping("/{id}")

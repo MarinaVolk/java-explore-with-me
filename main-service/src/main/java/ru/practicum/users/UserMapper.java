@@ -13,10 +13,8 @@ public class UserMapper {
     public static User newUserDtoToUser(NewUserDto newUserDto) {
 
         User user = new User();
-
         user.setName(newUserDto.getName());
         user.setEmail(newUserDto.getEmail());
-
         return user;
     }
 
@@ -32,9 +30,6 @@ public class UserMapper {
         for (User user : users) {
             toReturn.add(userToFullDto(user));
         }
-
-        //toReturn.sort(Comparator.reverseOrder());
-
         return toReturn;
     }
 

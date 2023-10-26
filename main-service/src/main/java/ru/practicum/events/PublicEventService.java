@@ -8,11 +8,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import ru.practicum.StatsClient;
+import ru.practicum.ViewStatsDto;
 import ru.practicum.exceptions.NotFoundException;
 import ru.practicum.exceptions.ValidationException;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static ru.practicum.events.EventMapper.DATE_TIME_FORMATTER;
@@ -176,11 +178,11 @@ public class PublicEventService {
                 new NotFoundException("- Событие с id=" + eventId + " не найдено или не опубликовано (Public)"));
 
         // отметка просмотров события в бд
-        /*String start = LocalDateTime.now().minusYears(1).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        String start = LocalDateTime.now().minusYears(1).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         String end = LocalDateTime.now().plusYears(1).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         String[] uris = {uri};
-        Integer views = statClientService.getStats(start, end, uris, true);
-        event.setViews(views); */
+        List<ViewStatsDto> list = statClientService.getStats(start, end, uris, true).getBody();
+        event.setViews(list.size());
 
         EventFullDto eventFullDto = EventMapper.eventToFullDto(eventRepository.save(event)); //event);
 

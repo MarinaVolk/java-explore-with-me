@@ -31,11 +31,10 @@ public class AdminUserService {
 
         log.info("-- Сохранение пользователя:{}", newUserDto);
 
-        // блок проверок
+        // проверка
         if (userRepository.existsByEmail(newUserDto.getEmail())) {
             throw new NotAvailableException("Такой адрес почты уже есть в базе, пользователь не сохранён");
         }
-        // конец блока проверок
 
         User user = UserMapper.newUserDtoToUser(newUserDto);
 
@@ -50,7 +49,7 @@ public class AdminUserService {
 
         log.info("-- Возвращение пользователей с номерами:{}", Arrays.toString(userIds));
 
-        // блок пагинации
+        // пагинация
         PageRequest pageRequest;
 
         if (size > 0 && from >= 0) {
@@ -62,7 +61,7 @@ public class AdminUserService {
 
         List<UserFullDto> listToReturn;
 
-        // блок проверки userIds
+        // проверка userIds
         if (userIds == null) {
             listToReturn = UserMapper.userToFullDto(userRepository.findAll(pageRequest));
         } else {

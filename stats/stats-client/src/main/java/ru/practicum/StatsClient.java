@@ -36,7 +36,7 @@ public class StatsClient {
         log.info("получена статистика за период с {}, по {}, uris {}, unique {}", start, end, uris, isUnique);
         return client.get()
                 .uri(uriBuilder -> uriBuilder
-                        .path(baseUrl + "/stats")
+                        .path(/*baseUrl + "/stats" */ "http://localhost:9090/stats")
                         .queryParam("start", start)
                         .queryParam("end", end)
                         .queryParam("uris", uris)

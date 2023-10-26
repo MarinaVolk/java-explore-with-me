@@ -50,9 +50,6 @@ public class AdminEventService {
             throw new ValidationException("- Размер страницы должен быть > 0, 'from' должен быть >= 0");
         }
 
-
-
-
         BooleanExpression byUsers;
         if (users != null) {
             byUsers = QEvent.event.initiator.id.in(users);
@@ -76,7 +73,7 @@ public class AdminEventService {
             byCategory = null;
         }
 
-        // блок старт
+        // start
         BooleanExpression byStart;
         LocalDateTime rangeStartDate;
         if (rangeStart != null) {
@@ -86,16 +83,13 @@ public class AdminEventService {
         }
         byStart = QEvent.event.eventDate.after(rangeStartDate);
 
-        // блок энд
+        // end
         BooleanExpression byEnd;
         if (rangeEnd != null) {
             byEnd = QEvent.event.eventDate.before(LocalDateTime.parse(rangeEnd, DATE_TIME_FORMATTER));
         } else {
             byEnd = null;
         }
-
-
-
 
         // запрос в бд через QDSL
         Iterable<Event> foundEvents = eventRepository.findAll(byUsers
@@ -108,10 +102,9 @@ public class AdminEventService {
                 pageRequest);
 
         // маппинг для возврата полученного списка
+
         List<EventFullDto> listToReturn = EventMapper.eventToFullDto(foundEvents);
-
         log.info("-- Список событий (Admin) возвращён, его размер: {}", listToReturn.size());
-
         return listToReturn;
     }
 
