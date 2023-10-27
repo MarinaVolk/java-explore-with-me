@@ -9,6 +9,8 @@ import ru.practicum.HitDto;
 import ru.practicum.ViewStatsDto;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
@@ -35,8 +37,8 @@ public class StatsController {
 
     @GetMapping("/stats")
     public Collection<ViewStatsDto> getViewStats(
-            @RequestParam(value = "start") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime start,
-            @RequestParam(value = "end") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime end,
+            @NotEmpty @RequestParam(value = "start") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime start,
+            @NotEmpty @RequestParam(value = "end") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime end,
             @RequestParam(value = "uris", defaultValue = "") List<String> uris,
             @RequestParam(value = "unique", defaultValue = "false") Boolean unique
     ) {
