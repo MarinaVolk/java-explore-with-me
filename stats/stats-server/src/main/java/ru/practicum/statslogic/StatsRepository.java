@@ -43,6 +43,7 @@ public interface StatsRepository extends JpaRepository<Hit, Integer> {
             "where s.timestamp between :start and :end " +
             "and s.uri in :uris " +
             "group by s.app, s.uri " +
-            "order by count(s.ip) desc")
+            "order by count(distinct s.uri), count(s.ip) desc")  // "order by count(s.ip) desc"
+
     List<ViewStatsDto> getAllStatsByUris(LocalDateTime start, LocalDateTime end, List<String> uris);
 }

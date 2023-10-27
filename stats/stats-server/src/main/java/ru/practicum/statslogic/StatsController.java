@@ -29,6 +29,7 @@ public class StatsController {
     @PostMapping("/hit")
     @ResponseStatus(value = HttpStatus.CREATED)
     public void saveStatsHit(@RequestBody @Valid HitDto hitDto) {
+        log.info("Received POST to /hit");
         statsService.saveStats(hitDto);
     }
 
