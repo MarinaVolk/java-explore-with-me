@@ -39,7 +39,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CategoryDto createCategory(NewCategoryDto newCategoryDto) {
         if (categoryRepository.existsByName(newCategoryDto.getName())) {
-                //&& !category.getName().equals(newCategoryDto.getName())) {
+            //&& !category.getName().equals(newCategoryDto.getName())) {
             throw new NotAvailableException("Такое имя категории уже есть в базе.");
         }
         Category category = categoryRepository.save(toCategory(newCategoryDto));
@@ -90,8 +90,7 @@ public class CategoryServiceImpl implements CategoryService {
         }
         if (eventRepository.existsByCategoryId(id)) {
             throw new NotAvailableException("Категория с id = " + id + " не может быть удалена.");
-        }
-        else {
+        } else {
             try {
                 categoryRepository.deleteById(id);
             } catch (RuntimeException e) {
