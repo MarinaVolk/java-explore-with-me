@@ -39,6 +39,11 @@ public class StatsServiceImpl implements StatsService {
             throw new ValidationException("Время окончания не может быть раньше времени начала");
         }
 
+        if (start.toString().isEmpty() || end.toString().isEmpty()) {
+            log.info("Время не указано.");
+            throw new ValidationException("Время не указано.");
+        }
+
         if (uris.isEmpty()) {
             if (unique) {
                 log.info("Получить всю статистику где isUnique {} ", unique);

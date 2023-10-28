@@ -2,6 +2,7 @@ package ru.practicum.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -16,13 +17,14 @@ import java.util.Map;
 
 @RestControllerAdvice
 public class ErrorHandler {
+
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public Map<String, String> handleValidationException(ValidationException e) {
         return Map.of("error", "Validation Error", "errorMessage", e.getMessage());
     }
 
-    @ExceptionHandler
+    @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public Map<String, String> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
         return Map.of("error", "Validation Error", "errorMessage", e.getMessage());
@@ -33,4 +35,11 @@ public class ErrorHandler {
     public Map<String, String> handleThrowableException(Throwable e) {
         return Map.of("error", "Server Error", "errorMessage", e.getMessage());
     }
+
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Map<String, String> handleDateTimeException(ValidationException e) {
+        return Map.of("error", "Validation Error", "errorMessage", e.getMessage());
+    }
+
 }
