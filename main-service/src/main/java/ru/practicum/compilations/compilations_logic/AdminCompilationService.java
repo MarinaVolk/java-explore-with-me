@@ -13,13 +13,6 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * File Name: AdminCompilationService.java
- * Author: Marina Volkova
- * Date: 2023-10-20,   5:37 PM (UTC+3)
- * Description:
- */
-
 @Service
 @Slf4j
 @RequiredArgsConstructor

@@ -10,12 +10,6 @@ import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import java.util.List;
 
-/**
- * File Name: PublicCategoryController.java
- * Author: Marina Volkova
- * Date: 2023-10-19,   9:27 PM (UTC+3)
- * Description:
- */
 
 @RestController
 @RequestMapping("/categories")

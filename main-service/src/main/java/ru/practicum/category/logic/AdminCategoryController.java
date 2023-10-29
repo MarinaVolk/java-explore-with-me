@@ -10,13 +10,6 @@ import ru.practicum.category.category_models.NewCategoryDto;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
-/**
- * File Name: AdminCategoryController.java
- * Author: Marina Volkova
- * Date: 2023-10-19,   9:30 PM (UTC+3)
- * Description:
- */
-
 @RestController
 @RequestMapping("/admin/categories")
 @RequiredArgsConstructor

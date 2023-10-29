@@ -10,14 +10,6 @@ import ru.practicum.compilations.compilations_models.UpdateCompilationRequests;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
-
-/**
- * File Name: AdminCompilationController.java
- * Author: Marina Volkova
- * Date: 2023-10-20,   5:32 PM (UTC+3)
- * Description:
- */
-
 @Transactional
 @RestController
 @RequiredArgsConstructor

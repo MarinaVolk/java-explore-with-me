@@ -15,13 +15,6 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
 
-/**
- * File Name: PrivateEventController.java
- * Author: Marina Volkova
- * Date: 2023-10-20,   7:20 PM (UTC+3)
- * Description:
- */
-
 @Transactional
 @RestController
 @RequiredArgsConstructor

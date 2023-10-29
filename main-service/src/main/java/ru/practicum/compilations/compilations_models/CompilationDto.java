@@ -5,13 +5,6 @@ import ru.practicum.events.event_models.EventShortDto;
 
 import java.util.List;
 
-/**
- * File Name: CompilationDto.java
- * Author: Marina Volkova
- * Date: 2023-10-20,   5:29 PM (UTC+3)
- * Description:
- */
-
 @Data
 public class CompilationDto {
     private final Long id;

@@ -8,13 +8,6 @@ import ru.practicum.util.Sorts;
 import java.time.LocalDateTime;
 import java.util.List;
 
-/**
- * File Name: EventPublicParams.java
- * Author: Marina Volkova
- * Date: 2023-10-27,   8:44 PM (UTC+3)
- * Description:
- */
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

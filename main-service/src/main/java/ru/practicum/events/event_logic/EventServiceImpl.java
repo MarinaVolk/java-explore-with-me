@@ -29,12 +29,6 @@ import java.util.stream.Collectors;
 
 import static ru.practicum.events.event_models.EventMapper.DATE_TIME_FORMATTER;
 
-/**
- * File Name: EventServiceImpl.java
- * Author: Marina Volkova
- * Date: 2023-10-27,   8:54 PM (UTC+3)
- * Description:
- */
 
 @Service
 @Slf4j

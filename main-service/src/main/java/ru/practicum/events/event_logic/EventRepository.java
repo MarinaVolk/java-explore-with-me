@@ -11,12 +11,6 @@ import ru.practicum.events.event_models.Event;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * File Name: EventRepository.java
- * Author: Marina Volkova
- * Date: 2023-10-20,   7:25 PM (UTC+3)
- * Description:
- */
 public interface EventRepository extends JpaRepository<Event, Long>, QuerydslPredicateExecutor<Event> {
     @Query("SELECT e " +
             "FROM Event AS e " +

@@ -6,13 +6,6 @@ import lombok.ToString;
 
 import javax.persistence.*;
 
-/**
- * File Name: User.java
- * Author: Marina Volkova
- * Date: 2023-10-20,   7:31 PM (UTC+3)
- * Description:
- */
-
 @Entity
 @Table(name = "users")
 @Getter

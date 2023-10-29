@@ -14,13 +14,6 @@ import javax.transaction.Transactional;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * File Name: AdminUserService.java
- * Author: Marina Volkova
- * Date: 2023-10-20,   7:35 PM (UTC+3)
- * Description:
- */
-
 @Service
 @Slf4j
 @RequiredArgsConstructor

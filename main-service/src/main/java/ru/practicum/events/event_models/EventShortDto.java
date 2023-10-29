@@ -4,13 +4,6 @@ import lombok.Data;
 import ru.practicum.category.category_models.CategoryDto;
 import ru.practicum.users.user_models.UserShortDto;
 
-/**
- * File Name: EventShortDto.java
- * Author: Marina Volkova
- * Date: 2023-10-20,   7:13 PM (UTC+3)
- * Description:
- */
-
 @Data
 public class EventShortDto {
     private final Long id;

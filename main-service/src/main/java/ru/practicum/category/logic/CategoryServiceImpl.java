@@ -20,12 +20,6 @@ import java.util.stream.Collectors;
 import static ru.practicum.category.category_models.CategoryMapper.toCategory;
 import static ru.practicum.category.category_models.CategoryMapper.toCategoryDto;
 
-/**
- * File Name: CategoryServiceImpl.java
- * Author: Marina Volkova
- * Date: 2023-10-19,   9:09 PM (UTC+3)
- * Description:
- */
 
 @Service
 @Slf4j
@@ -89,7 +83,7 @@ public class CategoryServiceImpl implements CategoryService {
             throw new NotFoundException("Категория с id = " + id + " не найдена.");
         }
         if (eventRepository.existsByCategoryId(id)) {
-            throw new NotAvailableException("Категория с id = " + id + " не может быть удалена.");
+            throw new NotAvailableException("Категория с id = " + id + " не может быть удалена по причине наличия событий данной категории.");
         } else {
             try {
                 categoryRepository.deleteById(id);

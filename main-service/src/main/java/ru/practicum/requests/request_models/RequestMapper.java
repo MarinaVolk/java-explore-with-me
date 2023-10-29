@@ -3,12 +3,6 @@ package ru.practicum.requests.request_models;/* # parse("File Header.java")*/
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * File Name: RequestMapper.java
- * Author: Marina Volkova
- * Date: 2023-10-20,   7:44 PM (UTC+3)
- * Description:
- */
 public class RequestMapper {
     public static Request partRequestDtoToModel(RequestDto partRequestDto) {
 

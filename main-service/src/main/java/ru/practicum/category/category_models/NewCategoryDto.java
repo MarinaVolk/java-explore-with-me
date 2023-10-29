@@ -5,13 +5,6 @@ import lombok.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-/**
- * File Name: NewCategoryDto.java
- * Author: Marina Volkova
- * Date: 2023-10-19,   8:55 PM (UTC+3)
- * Description:
- */
-
 @Getter
 @Setter
 @Builder

@@ -25,13 +25,6 @@ import java.util.stream.Collectors;
 import static ru.practicum.events.event_models.EventMapper.DATE_TIME_FORMATTER;
 
 
-/**
- * File Name: PrivateEventService.java
- * Author: Marina Volkova
- * Date: 2023-10-20,   7:28 PM (UTC+3)
- * Description:
- */
-
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -272,7 +265,6 @@ public class PrivateEventService {
             if (!request.getStatus().equals(RequestState.PENDING.toString())) {
                 log.info("- Запрос на участие с id={} не имеет статус PENDING",
                         requestId);
-                continue;
             }
 
             if (numberOfConfirmedRequests >= event.getParticipantLimit()

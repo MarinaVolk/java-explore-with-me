@@ -3,12 +3,6 @@ package ru.practicum.users.user_models;/* # parse("File Header.java")*/
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * File Name: UserMapper.java
- * Author: Marina Volkova
- * Date: 2023-10-20,   7:33 PM (UTC+3)
- * Description:
- */
 public class UserMapper {
     public static User newUserDtoToUser(NewUserDto newUserDto) {
 

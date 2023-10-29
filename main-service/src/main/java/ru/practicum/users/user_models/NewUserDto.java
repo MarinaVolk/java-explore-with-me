@@ -7,13 +7,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-/**
- * File Name: NewUserDto.java
- * Author: Marina Volkova
- * Date: 2023-10-20,   7:31 PM (UTC+3)
- * Description:
- */
-
 @Data
 public class NewUserDto {
     @NotNull

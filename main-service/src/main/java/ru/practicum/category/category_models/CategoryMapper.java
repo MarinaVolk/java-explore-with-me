@@ -6,13 +6,6 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * File Name: CategoryMapper.java
- * Author: Marina Volkova
- * Date: 2023-10-19,   8:56 PM (UTC+3)
- * Description:
- */
-
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CategoryMapper {
     public static CategoryDto toCategoryDto(Category category) {

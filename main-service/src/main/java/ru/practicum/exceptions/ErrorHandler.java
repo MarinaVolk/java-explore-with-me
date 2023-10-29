@@ -6,13 +6,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-/**
- * File Name: ErrorHandler.java
- * Author: Marina Volkova
- * Date: 2023-10-19,   9:21 PM (UTC+3)
- * Description:
- */
-
 @RestControllerAdvice
 @Slf4j
 public class ErrorHandler {

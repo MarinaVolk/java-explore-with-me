@@ -21,13 +21,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * File Name: RequestService.java
- * Author: Marina Volkova
- * Date: 2023-10-20,   7:47 PM (UTC+3)
- * Description:
- */
-
 @Service
 @Slf4j
 @RequiredArgsConstructor

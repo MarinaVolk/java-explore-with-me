@@ -15,13 +15,6 @@ import javax.validation.constraints.Min;
 import java.time.LocalDateTime;
 import java.util.List;
 
-/**
- * File Name: PublicEventController.java
- * Author: Marina Volkova
- * Date: 2023-10-20,   7:21 PM (UTC+3)
- * Description:
- */
-
 @Transactional
 @Slf4j
 @RestController

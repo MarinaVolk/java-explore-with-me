@@ -5,13 +5,6 @@ import lombok.RequiredArgsConstructor;
 
 import javax.persistence.Embeddable;
 
-/**
- * File Name: Location.java
- * Author: Marina Volkova
- * Date: 2023-10-20,   7:11 PM (UTC+3)
- * Description:
- */
-
 @Embeddable
 @Data
 @RequiredArgsConstructor

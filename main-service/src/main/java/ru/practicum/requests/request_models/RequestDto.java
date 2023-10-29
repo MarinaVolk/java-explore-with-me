@@ -4,13 +4,6 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 
-/**
- * File Name: RequestDto.java
- * Author: Marina Volkova
- * Date: 2023-10-20,   7:43 PM (UTC+3)
- * Description:
- */
-
 @Data
 public class RequestDto {
     private final Long id;

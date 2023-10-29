@@ -6,13 +6,6 @@ import lombok.ToString;
 
 import javax.persistence.*;
 
-/**
- * File Name: Category.java
- * Author: Marina Volkova
- * Date: 2023-10-19,   9:05 PM (UTC+3)
- * Description:
- */
-
 @Entity
 @Table(name = "categories")
 @Getter

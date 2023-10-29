@@ -6,13 +6,6 @@ import ru.practicum.users.user_models.UserShortDto;
 
 import java.time.LocalDateTime;
 
-/**
- * File Name: EventFullDto.java
- * Author: Marina Volkova
- * Date: 2023-10-20,   7:12 PM (UTC+3)
- * Description:
- */
-
 @Data
 public class EventFullDto {
     private final Long id;

@@ -5,14 +5,8 @@ import org.springframework.web.bind.annotation.*;
 import ru.practicum.compilations.compilations_models.CompilationDto;
 
 import javax.transaction.Transactional;
+import javax.validation.constraints.Max;
 import java.util.List;
-
-/**
- * File Name: PublicCompilationController.java
- * Author: Marina Volkova
- * Date: 2023-10-20,   5:33 PM (UTC+3)
- * Description:
- */
 
 @Transactional
 @RestController

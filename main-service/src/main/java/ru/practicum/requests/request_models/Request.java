@@ -7,13 +7,6 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-/**
- * File Name: Request.java
- * Author: Marina Volkova
- * Date: 2023-10-20,   7:38 PM (UTC+3)
- * Description:
- */
-
 @Entity
 @Table(name = "requests")
 @Getter

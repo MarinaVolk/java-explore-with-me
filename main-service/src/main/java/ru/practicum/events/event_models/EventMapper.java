@@ -11,12 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-/**
- * File Name: EventMapper.java
- * Author: Marina Volkova
- * Date: 2023-10-20,   7:22 PM (UTC+3)
- * Description:
- */
 public class EventMapper {
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 

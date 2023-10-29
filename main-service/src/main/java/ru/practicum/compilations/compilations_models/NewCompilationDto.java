@@ -6,12 +6,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-/**
- * File Name: NewCompilationDto.java
- * Author: Marina Volkova
- * Date: 2023-10-20,   5:30 PM (UTC+3)
- * Description:
- */
 
 @Data
 public class NewCompilationDto {

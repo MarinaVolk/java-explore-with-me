@@ -4,13 +4,6 @@ import lombok.Data;
 
 import javax.validation.constraints.Size;
 
-/**
- * File Name: UpdateEventAdminRequest.java
- * Author: Marina Volkova
- * Date: 2023-10-20,   7:15 PM (UTC+3)
- * Description:
- */
-
 @Data
 public class UpdateEventAdminRequest {
     @Size(min = 20, message = "size must be between 20 and 2000")

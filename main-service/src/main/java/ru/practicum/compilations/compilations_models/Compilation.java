@@ -6,13 +6,6 @@ import lombok.ToString;
 
 import javax.persistence.*;
 
-/**
- * File Name: Compilation.java
- * Author: Marina Volkova
- * Date: 2023-10-20,   5:01 PM (UTC+3)
- * Description:
- */
-
 @Entity
 @Table(name = "compilations")
 @Getter

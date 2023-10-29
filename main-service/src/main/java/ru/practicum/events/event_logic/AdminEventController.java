@@ -9,13 +9,6 @@ import ru.practicum.events.event_models.UpdateEventAdminRequest;
 import javax.validation.Valid;
 import java.util.List;
 
-/**
- * File Name: AdminEventController.java
- * Author: Marina Volkova
- * Date: 2023-10-20,   7:19 PM (UTC+3)
- * Description:
- */
-
 @Transactional
 @RestController
 @RequiredArgsConstructor

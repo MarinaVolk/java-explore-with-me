@@ -8,13 +8,6 @@ import ru.practicum.requests.request_models.RequestDto;
 import javax.transaction.Transactional;
 import java.util.List;
 
-/**
- * File Name: RequestController.java
- * Author: Marina Volkova
- * Date: 2023-10-20,   7:41 PM (UTC+3)
- * Description:
- */
-
 @Transactional
 @RestController
 @RequiredArgsConstructor

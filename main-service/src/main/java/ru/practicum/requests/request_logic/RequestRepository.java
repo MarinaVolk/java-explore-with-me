@@ -7,12 +7,6 @@ import ru.practicum.requests.request_models.Request;
 
 import java.util.List;
 
-/**
- * File Name: RequestRepository.java
- * Author: Marina Volkova
- * Date: 2023-10-20,   7:46 PM (UTC+3)
- * Description:
- */
 public interface RequestRepository extends JpaRepository<Request, Long> {
     boolean existsByRequesterAndEvent(Long requesterId, Long eventId);
 

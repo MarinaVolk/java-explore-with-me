@@ -19,12 +19,6 @@ import java.util.List;
 
 import static ru.practicum.events.event_models.EventMapper.DATE_TIME_FORMATTER;
 
-/**
- * File Name: AdminEventService.java
- * Author: Marina Volkova
- * Date: 2023-10-20,   7:26 PM (UTC+3)
- * Description:
- */
 
 @Service
 @Slf4j

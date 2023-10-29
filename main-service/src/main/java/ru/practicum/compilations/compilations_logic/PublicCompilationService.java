@@ -18,12 +18,6 @@ import ru.practicum.exceptions.ValidationException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * File Name: PublicCompilationService.java
- * Author: Marina Volkova
- * Date: 2023-10-20,   6:53 PM (UTC+3)
- * Description:
- */
 
 @Service
 @Slf4j
@@ -51,11 +45,10 @@ public class PublicCompilationService {
             compilationList = compilationRepository.findAll(pageRequest);
         }
 
-        List<CompilationDto> resultList = new ArrayList<>();
+        List<CompilationDto> resultList = getCompilationDtos(compilationList);
 
-        for (Compilation compilation : compilationList) {
-
-            resultList.add(getCompilationDto(compilation.getId()));
+        if (resultList.size() > 10) {
+            resultList = resultList.subList(0, 10);
         }
         return resultList;
     }
@@ -75,5 +68,34 @@ public class PublicCompilationService {
 
         List<EventShortDto> eventShortDtos = EventMapper.eventToShortDto(eventRepository.findAllByIdIn(eventIds));
         return CompMapper.compilationToDto(compilation, eventShortDtos);
+    }
+
+    private List<CompilationDto> getCompilationDtos(Iterable<Compilation> compilationList) {
+
+        List<CompilationDto> compilationDtoList = new ArrayList<>();
+        List<Long> compIds = new ArrayList<>();
+        for (Compilation c : compilationList) {
+            compIds.add(c.getId());
+        }
+        List<CompEvent> compEvents = compEventRepository.findAllByCompIdIn(compIds);
+
+        for (Compilation comp : compilationList) {
+            List<EventShortDto> eventsForCompDto = new ArrayList<>();
+
+            for (CompEvent cEvent : compEvents) {
+                List<Long> eventIds = new ArrayList<>();
+                if (cEvent.getCompId() == comp.getId()) {
+                    eventIds.add(cEvent.getEventId());
+                }
+                Long[] array = new Long[eventIds.size()];
+                array = eventIds.toArray(array);
+
+                List<EventShortDto> eventShortDtos = EventMapper.eventToShortDto(eventRepository.findAllByIdIn(array));
+                for (Compilation comp1 : compilationList) {
+                    compilationDtoList.add(CompMapper.compilationToDto(comp1, eventShortDtos));
+                }
+            }
+        }
+        return compilationDtoList;
     }
 }
