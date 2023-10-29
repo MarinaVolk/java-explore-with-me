@@ -9,16 +9,15 @@ import ru.practicum.compilations.compilations_models.CompEvent;
 import ru.practicum.compilations.compilations_models.CompMapper;
 import ru.practicum.compilations.compilations_models.Compilation;
 import ru.practicum.compilations.compilations_models.CompilationDto;
+import ru.practicum.events.event_models.Event;
 import ru.practicum.events.event_models.EventMapper;
 import ru.practicum.events.event_logic.EventRepository;
 import ru.practicum.events.event_models.EventShortDto;
 import ru.practicum.exceptions.NotFoundException;
 import ru.practicum.exceptions.ValidationException;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -46,7 +45,6 @@ public class PublicCompilationService {
         } else {
             compilationList = compilationRepository.findAll(pageRequest);
         }
-
         List<CompilationDto> resultList = getCompilationDtos(compilationList);
         return resultList;
     }
@@ -71,36 +69,46 @@ public class PublicCompilationService {
     private List<CompilationDto> getCompilationDtos(Iterable<Compilation> compilationList) {
 
         List<CompilationDto> compilationDtoList = new ArrayList<>();
+
         List<Long> compIds = new ArrayList<>();
         for (Compilation c : compilationList) {
             compIds.add(c.getId());
         }
+
+        // забираем все события по списку compIds
         List<CompEvent> compEvents = compEventRepository.findAllByCompIdIn(compIds);
 
+        // строим мапу вида {compId: список eventId}
+        // также собираем список eventId, которые вообще нужны (для SQL запроса)
+        Map<Long, List<Long>> map = new HashMap<>();
+        List<Long> globalEventIds = new ArrayList<>();
         for (Compilation comp : compilationList) {
+            List<Long> cEventIds = new ArrayList<>();
             for (CompEvent cEvent : compEvents) {
-                List<Long> eventIds = new ArrayList<>();
-                if (cEvent.getCompId().equals(comp.getId())) {
-                    eventIds.add(cEvent.getEventId());
+                if (comp.getId().equals(cEvent.getCompId())) {
+                    cEventIds.add(cEvent.getEventId());
+                    globalEventIds.add(cEvent.getEventId());
                 }
-                Long[] array = new Long[eventIds.size()];
-                array = eventIds.toArray(array);
-
-                List<EventShortDto> eventShortDtos = EventMapper.eventToShortDto(eventRepository.findAllByIdIn(array));
-                CompilationDto compDto1 = CompMapper.compilationToDto(comp, eventShortDtos);
-                compilationDtoList.add(compDto1);
             }
+            map.put(comp.getId(), cEventIds);
         }
-        Collections.sort(compilationDtoList, comparator);
-        compilationDtoList = compilationDtoList.subList(0, 10);
+
+        // из репоизтория event'ов вытаскиваем ВСЕ нужные ивенты
+        Long[] globalEventIdsArray = globalEventIds.toArray(new Long[0]);
+        List<Event> events = eventRepository.findAllByIdIn(globalEventIdsArray);
+
+        // преобразуем event'ы в DTO
+        List<EventShortDto> eventsForCompilationDtos = EventMapper.eventToShortDto(events);
+
+        // обходим список Compilations и преобразуем в compilationDtoList
+        for (Compilation comp : compilationList) {
+            List<EventShortDto> subset = eventsForCompilationDtos
+                    .stream()
+                    .filter(c -> map.get(comp.getId()).contains(c.getId()))
+                    .collect(Collectors.toList());
+            CompilationDto el = CompMapper.compilationToDto(comp, subset);
+            compilationDtoList.add(el);
+        }
         return compilationDtoList;
     }
-
-    Comparator<CompilationDto> comparator = new Comparator<CompilationDto>() {
-        @Override
-        public int compare(CompilationDto left, CompilationDto right) {
-            return (int) (left.getId() - right.getId());
-        }
-    };
-
 }
