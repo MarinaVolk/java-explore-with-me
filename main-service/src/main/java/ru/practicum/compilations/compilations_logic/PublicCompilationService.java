@@ -84,7 +84,7 @@ public class PublicCompilationService {
 
             for (CompEvent cEvent : compEvents) {
                 List<Long> eventIds = new ArrayList<>();
-                if (cEvent.getCompId() == comp.getId()) {
+                if (cEvent.getCompId().equals(comp.getId())) {
                     eventIds.add(cEvent.getEventId());
                 }
                 Long[] array = new Long[eventIds.size()];
