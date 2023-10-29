@@ -80,8 +80,6 @@ public class PublicCompilationService {
         List<CompEvent> compEvents = compEventRepository.findAllByCompIdIn(compIds);
 
         for (Compilation comp : compilationList) {
-            List<EventShortDto> eventsForCompDto = new ArrayList<>();
-
             for (CompEvent cEvent : compEvents) {
                 List<Long> eventIds = new ArrayList<>();
                 if (cEvent.getCompId().equals(comp.getId())) {
@@ -91,9 +89,8 @@ public class PublicCompilationService {
                 array = eventIds.toArray(array);
 
                 List<EventShortDto> eventShortDtos = EventMapper.eventToShortDto(eventRepository.findAllByIdIn(array));
-                for (Compilation comp1 : compilationList) {
-                    compilationDtoList.add(CompMapper.compilationToDto(comp1, eventShortDtos));
-                }
+                CompilationDto compDto1 = CompMapper.compilationToDto(comp, eventShortDtos);
+                compilationDtoList.add(compDto1);
             }
         }
         return compilationDtoList;
