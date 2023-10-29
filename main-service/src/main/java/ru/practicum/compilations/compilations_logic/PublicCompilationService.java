@@ -16,6 +16,8 @@ import ru.practicum.exceptions.NotFoundException;
 import ru.practicum.exceptions.ValidationException;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -46,10 +48,6 @@ public class PublicCompilationService {
         }
 
         List<CompilationDto> resultList = getCompilationDtos(compilationList);
-
-        if (resultList.size() > 10) {
-            resultList = resultList.subList(0, 10);
-        }
         return resultList;
     }
 
@@ -93,6 +91,16 @@ public class PublicCompilationService {
                 compilationDtoList.add(compDto1);
             }
         }
+        Collections.sort(compilationDtoList, comparator);
+        compilationDtoList = compilationDtoList.subList(0, 10);
         return compilationDtoList;
     }
+
+    Comparator<CompilationDto> comparator = new Comparator<CompilationDto>() {
+        @Override
+        public int compare(CompilationDto left, CompilationDto right) {
+            return (int) (left.getId() - right.getId());
+        }
+    };
+
 }
