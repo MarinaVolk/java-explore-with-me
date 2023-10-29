@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.practicum.compilations.compilations_models.CompilationDto;
 
 import javax.transaction.Transactional;
-import javax.validation.constraints.Max;
 import java.util.List;
 
 @Transactional

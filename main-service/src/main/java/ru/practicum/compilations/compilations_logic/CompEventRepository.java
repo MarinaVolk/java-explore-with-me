@@ -9,7 +9,7 @@ import java.util.List;
 public interface CompEventRepository extends JpaRepository<CompEvent, Long> {
     List<CompEvent> findAllByCompId(Long compId);
 
-    List<CompEvent> findAllByCompIdIn(List <Long> compIds);
+    List<CompEvent> findAllByCompIdIn(List<Long> compIds);
 
     @Modifying
     void deleteByCompId(Long compId);
