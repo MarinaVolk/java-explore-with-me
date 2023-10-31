@@ -10,7 +10,6 @@ import ru.practicum.comments.comments_models.CommentRequestDto;
 import ru.practicum.comments.comments_models.CommentShortResponseDto;
 import ru.practicum.events.event_logic.EventRepository;
 import ru.practicum.events.event_models.Event;
-import ru.practicum.events.event_models.EventState;
 import ru.practicum.exceptions.NotFoundException;
 import ru.practicum.exceptions.ValidationException;
 import ru.practicum.users.user_logic.UserRepository;
