@@ -8,12 +8,11 @@ import ru.practicum.comments.comments_models.CommentShortResponseDto;
 public class CommentMapper {
 
     public static CommentFullResponseDto toFullResponse(Comment comment) {
-        return new CommentFullResponseDto(comment.getId(), comment.getText(), comment.getEventId(), comment.getUserId(),
-                comment.getCreated(), comment.getIsResponse(), comment.getResponses());
+        return new CommentFullResponseDto(comment.getId(), comment.getText(), comment.getEvent().getId(), comment.getAuthor().getId(),
+                comment.getCreated(), comment.getIsResponse());
     }
 
     public static CommentShortResponseDto toShortResponse(Comment comment) {
-        return new CommentShortResponseDto(comment.getText(), comment.getUserId(), comment.getCreated(),
-                comment.getResponses());
+        return new CommentShortResponseDto(comment.getText(), comment.getAuthor().getId(), comment.getCreated());
     }
 }

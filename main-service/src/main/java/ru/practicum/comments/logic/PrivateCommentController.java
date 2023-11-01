@@ -14,11 +14,11 @@ import java.util.List;
 @Valid
 @RequestMapping("/users/{userId}/comments")
 public class PrivateCommentController {
-    private final CommentService service;
+    private final CommentService commentService;
 
     @Autowired
     public PrivateCommentController(CommentService service) {
-        this.service = service;
+        this.commentService = service;
     }
 
     @PostMapping
@@ -28,7 +28,7 @@ public class PrivateCommentController {
                                                 @RequestParam(name = "eventId") @Min(1) Long eventId,
                                                 @RequestParam(name = "responseToId", required = false)
                                                 @Min(1) Long responseToId) {
-        return service.createComment(userId, eventId, request, responseToId);
+        return commentService.createComment(userId, eventId, request, responseToId);
     }
 
     @GetMapping
@@ -37,25 +37,25 @@ public class PrivateCommentController {
                                                              @Min(0) Integer from,
                                                              @RequestParam(name = "size", defaultValue = "10")
                                                              @Min(1) Integer size) {
-        return service.getAllCommentsByUser(userId, from, size);
+        return commentService.getAllCommentsByUser(userId, from, size);
     }
 
     @GetMapping("/{commentId}")
     public CommentFullResponseDto getCommentByUser(@PathVariable(name = "userId") @Min(1) Long userId,
                                                    @PathVariable(name = "commentId") @Min(1) Long commentId) {
-        return service.getCommentByUser(userId, commentId);
+        return commentService.getCommentByUser(userId, commentId);
     }
 
     @PatchMapping("/{commentId}")
     public CommentFullResponseDto updateCommentByUser(@RequestBody @Valid CommentRequestDto request,
                                                       @PathVariable(name = "userId") @Min(1) Long userId,
                                                       @PathVariable(name = "commentId") @Min(1) Long commentId) {
-        return service.updateCommentByUser(userId, commentId, request);
+        return commentService.updateCommentByUser(userId, commentId, request);
     }
 
     @DeleteMapping("/{commentId}")
     public void deleteCommentByUser(@PathVariable(name = "userId") @Min(1) Long userId,
                                     @PathVariable(name = "commentId") @Min(1) Long commentId) {
-        service.deleteCommentByUser(userId, commentId);
+        commentService.deleteCommentByUser(userId, commentId);
     }
 }

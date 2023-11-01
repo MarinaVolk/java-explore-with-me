@@ -13,6 +13,7 @@ import ru.practicum.events.event_models.Event;
 import ru.practicum.exceptions.NotFoundException;
 import ru.practicum.exceptions.ValidationException;
 import ru.practicum.users.user_logic.UserRepository;
+import ru.practicum.users.user_models.User;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -62,23 +63,23 @@ public class CommentServiceImpl implements CommentService {
     public CommentFullResponseDto createComment(Long userId, Long eventId, CommentRequestDto request, Long responseToId) {
         userValidate(userId);
         final Event event = eventRepository.findById(eventId).orElseThrow(() -> new NotFoundException(String.format(
-                "В базе данных отсутствует событие с id - %d", eventId)));
-        /*if (!event.getState().equals(EventState.PUBLISHED)) {
-            throw new ValidationException("Комментарий не может быть добавлен для неопубликованного события.");
-        }*/
-        final Comment comment = commentRepository.save(new Comment(null, request.getText(), eventId, userId, LocalDateTime.now(),
-                false, List.of()));
+                "В базе данных отсутствует событие с id: %d", eventId)));
+
+        final User author = userRepository.findById(userId).orElseThrow(() -> new NotFoundException(String.format(
+                "В базе данных отсутствует пользователь с id: %d", userId)));
+
+        final Comment comment = commentRepository.save(new Comment(null, request.getText(), event, author, LocalDateTime.now(),
+                false));
         if (responseToId != null) {
             final Comment mainCom = commentRepository.findById(responseToId).orElseThrow(() -> new NotFoundException(
                     String.format("В базе данных отсутствует комментарий с id  %d", responseToId)));
-            if (!mainCom.getEventId().equals(eventId)) {
+            if (!mainCom.getEvent().getId().equals(eventId)) {
                 throw new ValidationException(String.format("Ответ на комментарий должен " +
                                 "быть с тем же eventId что и основной комментарий: expected - %s, current - %s",
-                        comment.getEventId(), eventId));
+                        comment.getEvent().getId(), eventId));
             }
             comment.setIsResponse(true);
-            mainCom.getResponses().add(comment);
-            commentRepository.save(mainCom);
+            commentRepository.save(comment);
         }
         return CommentMapper.toFullResponse(comment);
     }
@@ -86,34 +87,36 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<CommentFullResponseDto> getAllCommentsByUser(Long userId, Integer from, Integer size) {
         userValidate(userId);
-        return commentRepository.findByUserId(userId, PageRequest.of(from / size, size)).stream()
+        return commentRepository.findByAuthorId(userId, PageRequest.of(from / size, size)).stream()
                 .map(CommentMapper::toFullResponse).collect(Collectors.toList());
     }
 
     @Override
     public CommentFullResponseDto getCommentByUser(Long userId, Long commentId) {
-        final Comment comment = commentValidate(userId, commentId);
+        userValidate(userId);
+        Comment comment = commentRepository.findById(commentId).orElseThrow(() ->
+                new NotFoundException(String.format("Комментария с id %d не найдено", commentId)));
         return CommentMapper.toFullResponse(comment);
     }
 
     @Override
     public CommentFullResponseDto updateCommentByUser(Long userId, Long commentId, CommentRequestDto request) {
-        final Comment comment = commentValidate(userId, commentId);
-        comment.setText(request.getText());
-        final Comment updComment = commentRepository.save(comment);
-        log.debug("Комментарий успешно обновлен: {}", updComment);
-        return CommentMapper.toFullResponse(updComment);
+        Comment comment = commentRepository.findById(commentId).orElseThrow(() ->
+                new NotFoundException(String.format("Комментария с id %d не найдено", commentId)));
+        if (!comment.getAuthor().getId().equals(userId)) {
+            throw new ValidationException("Вы не являетесь создателем этого комментария.");
+        } else {
+            comment.setText(request.getText());
+        }
+        return CommentMapper.toFullResponse(commentRepository.save(comment));
     }
 
     @Override
     public void deleteCommentByUser(Long userId, Long commentId) {
-        final Comment comment = commentValidate(userId, commentId);
-        if (!comment.getResponses().isEmpty()) {
-            for (Comment currentComment : comment.getResponses()) {
-                currentComment.setIsResponse(false);
-                commentRepository.save(currentComment);
-            }
-        }
+        userValidate(userId);
+        Comment comment = commentRepository.findById(commentId).orElseThrow(() ->
+                new NotFoundException(String.format("Комментария с id %d не найдено", commentId)));
+
         commentRepository.deleteById(commentId);
     }
 
@@ -131,16 +134,4 @@ public class CommentServiceImpl implements CommentService {
             throw new NotFoundException(String.format("Отсутствует пользователь с id %d", userId));
         }
     }
-
-    private Comment commentValidate(Long userId, Long commentId) {
-        userValidate(userId);
-        final Comment comment = commentRepository.findById(commentId).orElseThrow(() -> new NotFoundException(
-                String.format("Отсутствует комментарий с id %d", commentId)));
-        if (!comment.getUserId().equals(userId)) {
-            throw new ValidationException(String.format("Невозможно получить полную информацию о комментарии - " +
-                    "пользователь с id: %d не является автором комментария с id: %d", userId, commentId));
-        }
-        return comment;
-    }
-
 }

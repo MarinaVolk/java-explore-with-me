@@ -7,7 +7,7 @@ import ru.practicum.comments.comments_models.Comment;
 
 public interface CommentRepository extends JpaRepository<Comment, Long> {
 
-    Page<Comment> findByUserId(Long userId, PageRequest page);
+    Page<Comment> findByAuthorId(Long userId, PageRequest page);
 
     Page<Comment> findByEventId(Long eventId, PageRequest page);
 

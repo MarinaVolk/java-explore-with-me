@@ -14,5 +14,4 @@ public class CommentShortResponseDto {
     private String text;
     private Long userId;
     private LocalDateTime created;
-    private List<Comment> responses;
 }
