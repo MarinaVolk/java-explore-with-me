@@ -1,5 +1,6 @@
 package ru.practicum.comments.logic;/* # parse("File Header.java")*/
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -21,18 +22,12 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class CommentServiceImpl implements CommentService {
 
     private final CommentRepository commentRepository;
     private final UserRepository userRepository;
     private final EventRepository eventRepository;
-
-    @Autowired
-    public CommentServiceImpl(CommentRepository comRep, UserRepository userRep, EventRepository eventRep) {
-        this.commentRepository = comRep;
-        this.userRepository = userRep;
-        this.eventRepository = eventRep;
-    }
 
     @Override
     public CommentFullResponseDto getCommentByAdmin(Long commentId) {
