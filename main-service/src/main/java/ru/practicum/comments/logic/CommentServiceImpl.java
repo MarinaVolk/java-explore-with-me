@@ -63,7 +63,7 @@ public class CommentServiceImpl implements CommentService {
                 "В базе данных отсутствует пользователь с id: %d", userId)));
 
         final Comment comment = commentRepository.save(new Comment(null, request.getText(), event, author, LocalDateTime.now(),
-                false));
+                false, null));
         if (responseToId != null) {
             final Comment mainCom = commentRepository.findById(responseToId).orElseThrow(() -> new NotFoundException(
                     String.format("В базе данных отсутствует комментарий с id  %d", responseToId)));
@@ -73,8 +73,10 @@ public class CommentServiceImpl implements CommentService {
                         comment.getEvent().getId(), eventId));
             }
             comment.setIsResponse(true);
+            comment.setParentCommentId(responseToId);
             commentRepository.save(comment);
         }
+
         return CommentMapper.toFullResponse(comment);
     }
 

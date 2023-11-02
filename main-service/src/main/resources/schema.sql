@@ -66,6 +66,7 @@ create TABLE IF NOT EXISTS comments (
     author_id BIGINT,
     created TIMESTAMP,
     is_response BOOLEAN,
+    parent_comment_id BIGINT,
     CONSTRAINT fk_com_to_events FOREIGN KEY(event_id) REFERENCES events(id) ON delete CASCADE,
     CONSTRAINT fk_com_to_users FOREIGN KEY(author_id) REFERENCES users(id) ON delete CASCADE
 );

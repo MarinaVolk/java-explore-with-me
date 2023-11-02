@@ -33,4 +33,6 @@ public class Comment {
     private LocalDateTime created;
     @Column(name = "is_response")
     private Boolean isResponse;
+    @Column(name = "parent_comment_id")
+    private Long parentCommentId;
 }

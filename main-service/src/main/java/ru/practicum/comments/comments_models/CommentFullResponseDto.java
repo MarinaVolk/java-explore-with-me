@@ -16,4 +16,5 @@ public class CommentFullResponseDto {
     private Long userId;
     private LocalDateTime created;
     private Boolean isResponse;
+    private Long parentCommentId;
 }

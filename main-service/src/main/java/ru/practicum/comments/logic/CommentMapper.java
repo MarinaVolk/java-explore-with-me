@@ -9,7 +9,7 @@ public class CommentMapper {
 
     public static CommentFullResponseDto toFullResponse(Comment comment) {
         return new CommentFullResponseDto(comment.getId(), comment.getText(), comment.getEvent().getId(), comment.getAuthor().getId(),
-                comment.getCreated(), comment.getIsResponse());
+                comment.getCreated(), comment.getIsResponse(), comment.getParentCommentId());
     }
 
     public static CommentShortResponseDto toShortResponse(Comment comment) {
